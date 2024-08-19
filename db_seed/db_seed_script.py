@@ -1,5 +1,9 @@
+import sys
+import os
 from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
+
+sys.path.append(os.path.dirname(__file__) + '/..')
 from db_engine.db_urls import postgres_db_url, app_db_url
 from db_engine.model import Base
 from seed_db_utils import create_db_user, seed_all_data
@@ -36,3 +40,4 @@ if database_exists(app_db_url):
     Base.metadata.create_all(engine2)
     seed_all_data(engine2)
     print("Скрипт закончил выполнение, можно запускать приложение для работы")
+
